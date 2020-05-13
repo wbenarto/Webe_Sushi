@@ -1,11 +1,13 @@
 // RFCE functional component 
 import React, { useState } from 'react'
 import { Typography, Button, Form, message, Input, Icon } from 'antd'
-import { Types } from 'mongoose'
-import Item from 'antd/lib/list/Item'
+import FileUpload from '../../utils/FileUpload'
+import Axios from 'axios';
+
 
 const { Title } = Typography;
 const { TextArea } = Input;
+
 
 const Categories = [
     { key:1, value: 'Maki'},
@@ -19,12 +21,14 @@ const Categories = [
     { key:9, value: 'Chef on Site'}
 ]
 
-function UploadProductPage() {
+function UploadProductPage(props) {
 
     const [TitleValue, setTitleValue] = useState("")
     const [DescriptionValue, setDescriptionValue] = useState("")
     const [PriceValue, setPriceValue] = useState(0)
     const [TypeValue, setTypeValue] =useState(1)
+
+    const [Images, setImages] = useState([])
     
     const onTitleChange = (event) => {
         setTitleValue(event.currentTarget.value)
@@ -41,6 +45,12 @@ function UploadProductPage() {
     const onTypeChange = (event) => {
         setTypeValue(event.currentTarget.value)
     }
+
+    const updateImages = (newImages) => { 
+        console.log(newImages)
+        setImages(newImages);
+    }
+
     return (
         <div style={{ maxWidth:'700px', margin: '2rem auto'}}>
             <div style={{ textAlign:'center', marginBottom:'2rem'}}>
@@ -48,6 +58,9 @@ function UploadProductPage() {
             </div>
         
         <Form onsubmit>
+
+        <FileUpload refreshFunction={updateImages} />
+
         <br />
         <br />
         <label>Title</label>
