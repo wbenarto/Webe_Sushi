@@ -26,7 +26,7 @@ function UploadProductPage(props) {
     const [TitleValue, setTitleValue] = useState("")
     const [DescriptionValue, setDescriptionValue] = useState("")
     const [PriceValue, setPriceValue] = useState(0)
-    const [TypeValue, setTypeValue] =useState(1)
+    const [CategoryValue, setCategoryValue] =useState(1)
 
     const [Images, setImages] = useState([])
     
@@ -42,13 +42,36 @@ function UploadProductPage(props) {
         setPriceValue(event.currentTarget.value)
     }
 
-    const onTypeChange = (event) => {
-        setTypeValue(event.currentTarget.value)
+    const onCategoryChange = (event) => {
+        setCategoryValue(event.currentTarget.value)
     }
 
     const updateImages = (newImages) => { 
         console.log('update images fired from Upload product page');
         setImages(newImages);
+    }
+    
+    const onSubmit = (event) => {
+        event.preventDefault();
+
+        const variables = {
+            writer: props.user.userData._id,
+            title: TitleValue,
+            description: DescriptionValue,
+            price: PriceValue,
+            images: Images,
+            categories: CategoryValue
+        }
+
+        Axios.post('api/product/uploadProduct', variables)
+            .then(response => {
+                if(response.data.success) {
+                    alert('Product Successfully Uploaded!')
+                    props.history.push('/')
+                } else {
+                    alert('Failed to upload Product')
+                }
+            })
     }
 
     return (
@@ -57,7 +80,7 @@ function UploadProductPage(props) {
                 <Title level={2}> Upload Product Image </Title>
             </div>
         
-        <Form>
+        <Form onSubmit={onSubmit}>
 
         <FileUpload refreshFunction={updateImages} />
 
@@ -84,7 +107,7 @@ function UploadProductPage(props) {
     
         <label>Categories: </label>
         <br/>
-        <select onChange={onTypeChange}>
+        <select onChange={onCategoryChange}>
             {Categories.map(type=>(
             <option key={type.key} value={type.key}>
                 {type.value}
@@ -95,7 +118,7 @@ function UploadProductPage(props) {
         <br />
         <br />
         <Button 
-            
+            onClick={onSubmit}
         >
             Submit
         </Button>
