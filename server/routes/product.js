@@ -13,7 +13,7 @@ var storage = multer.diskStorage({
     },
     fileFilter: (req, file, cb) => {
         const ext = path.extname(file.originalname)
-        if (ext !== '.jpg' || ext !== '.png') {
+        if (ext !== '.jpeg' || ext !== '.png') {
             return cb(res.status(400).end('only jpg, png are allowed'), false)
         }
         cb(null,true)
@@ -30,7 +30,8 @@ router.post("/uploadImage", auth, (req, res) => {
     // fetch image from client
     // save inside Node server
     // Multer library install
-    upload(req,res, err => {
+    upload( (req,res, err) => {
+        console.log(`upload function fired in post request in router/product`)
         if(err) return res.json({ success: false, err })
     
         return res.json({ success: true, image: res.req.file.path, fileName: res.req.file.filename })

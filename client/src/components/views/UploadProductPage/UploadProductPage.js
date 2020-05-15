@@ -47,7 +47,7 @@ function UploadProductPage(props) {
     }
 
     const updateImages = (newImages) => { 
-        console.log(newImages);
+        console.log('update images fired from Upload product page');
         setImages(newImages);
     }
 

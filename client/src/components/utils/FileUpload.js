@@ -2,11 +2,16 @@ import React, { useState } from "react";
 import Dropzone from "react-dropzone";
 import { Icon } from "antd";
 import Axios from "axios";
+var FormData = require('form-data');
 
 function FileUpload(props) {
   const [Images, setImages] = useState([]);
+  
+  console.log('file upload fired')
+  console.log(props)
 
   const onDrop = (files) => {
+      
     let formData = new FormData();
     const config = {
       header: { "content-type": "multipart/form-data" },
@@ -14,17 +19,37 @@ function FileUpload(props) {
     formData.append("file", files[0]);
 
     Axios.post("/api/product/uploadImage", formData, config).then(
-      (response) => {
+      response => {
+        
         if (response.data.success) {
+          
           setImages([...Images, response.data.image]);
           props.refreshFunction([...Images, response.data.image]);
         } else {
+           
           alert("Failed to save the Image in Server");
         }
+
+        console.log(Images)
       }
+
     );
     //save the image we chose inside node server
+    console.log(`onDrop function fired from file upload`)
+    console.log(Images)
+    console.log(files[0])
   };
+
+  const onDelete =(image) => {
+    const currentIndex = Images.indexOf(image);
+
+    let newImages = [...Images]
+    newImages.splice(currentIndex, 1)
+
+    setImages(newImages)
+    props.refreshFunction(newImages)
+
+  }
 
   return (
     <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -60,7 +85,7 @@ function FileUpload(props) {
         }}
       >
         {Images.map((image, index) => (
-          <div>
+          <div onClick={onDelete}>
             <img
               style={{ minWidth: "300px", width: "300px", height: "240px" }}
               src={`http://localhost:5000/${image}`}
