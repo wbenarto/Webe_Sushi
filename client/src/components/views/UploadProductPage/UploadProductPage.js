@@ -47,7 +47,7 @@ function UploadProductPage(props) {
     }
 
     const updateImages = (newImages) => { 
-        console.log(newImages)
+        console.log(newImages);
         setImages(newImages);
     }
 
@@ -57,7 +57,7 @@ function UploadProductPage(props) {
                 <Title level={2}> Upload Product Image </Title>
             </div>
         
-        <Form onsubmit>
+        <Form>
 
         <FileUpload refreshFunction={updateImages} />
 
@@ -95,7 +95,7 @@ function UploadProductPage(props) {
         <br />
         <br />
         <Button 
-            onClick
+            
         >
             Submit
         </Button>

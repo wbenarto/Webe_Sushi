@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { User } = require("../models/User");
+// const { Product } = require("../models/Product");
 const multer = require('multer')
 const { auth } = require("../middleware/auth");
 
@@ -13,7 +13,7 @@ var storage = multer.diskStorage({
     },
     fileFilter: (req, file, cb) => {
         const ext = path.extname(file.originalname)
-        if (ext !== '.JPG' || ext !== '.PNG') {
+        if (ext !== '.jpg' || ext !== '.png') {
             return cb(res.status(400).end('only jpg, png are allowed'), false)
         }
         cb(null,true)
@@ -31,8 +31,8 @@ router.post("/uploadImage", auth, (req, res) => {
     // save inside Node server
     // Multer library install
     upload(req,res, err => {
-        if(err) {return res.json({ success: false, err })
-    }
+        if(err) return res.json({ success: false, err })
+    
         return res.json({ success: true, image: res.req.file.path, fileName: res.req.file.filename })
     })
 });
