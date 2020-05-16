@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import Dropzone from "react-dropzone";
 import { Icon } from "antd";
 import Axios from "axios";
-var FormData = require('form-data');
 
 function FileUpload(props) {
   const [Images, setImages] = useState([]);
   
   console.log('file upload fired')
   console.log(props)
+  console.log(Images)
 
   const onDrop = (files) => {
       
@@ -17,10 +17,11 @@ function FileUpload(props) {
       header: { "content-type": "multipart/form-data" },
     };
     formData.append("file", files[0]);
-
+    console.log(Array.from(formData))
+    
     Axios.post("/api/product/uploadImage", formData, config).then(
-      response => {
-        
+      (response => {
+        console.log(response.data.image)
         if (response.data.success) {
           
           setImages([...Images, response.data.image]);
@@ -30,14 +31,14 @@ function FileUpload(props) {
           alert("Failed to save the Image in Server");
         }
 
-        console.log(Images)
-      }
+       
+      })
 
     );
     //save the image we chose inside node server
     console.log(`onDrop function fired from file upload`)
-    console.log(Images)
-    console.log(files[0])
+    // console.log(Images)
+    // console.log(files[0])
   };
 
   const onDelete =(image) => {
