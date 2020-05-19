@@ -22,6 +22,7 @@ function FileUpload(props) {
     Axios.post("/api/product/uploadImage", formData, config).then(
       (response => {
         console.log(response.data.image)
+        console.log(Array.from(formData)[0])
         if (response.data.success) {
           
           setImages([...Images, response.data.image]);
@@ -57,7 +58,7 @@ function FileUpload(props) {
       <Dropzone
         onDrop={onDrop}
         multiple={false}
-        maxSize={8000000000000000000000000}
+        maxSize={800000000000000000000000000000000000000000000000000000000}
       >
         {({ getRootProps, getInputProps }) => (
           <div
