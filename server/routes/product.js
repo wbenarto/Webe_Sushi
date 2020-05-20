@@ -32,7 +32,6 @@ router.post("/uploadImage", auth, (req, res) => {
     // Multer library install
     // console.dir(req, res)
     upload( req,res, (err) => {
-        console.log(req, res, err)
         
         if(err) {
             console.log(err)
@@ -45,7 +44,6 @@ router.post("/uploadImage", auth, (req, res) => {
 
 router.post("/uploadProduct", auth, (req, res) => {
     const product = new Product(req.body)
-    console.log(product)
 
     product.save((err)=> {
         if (err) return res.status(400).json({success: false, err})

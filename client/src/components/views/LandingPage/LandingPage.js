@@ -10,34 +10,28 @@ function LandingPage() {
     const [Products, setProducts] = useState([])
     const [Skip, setSkip] = useState(0)
     const [Limit, setLimit] = useState(8)
-    const [PostSize, setPostSize] = useState(0)
+    const [PostSize, setPostSize] = useState()
     
     useEffect(()=>{
-       const variables = {
-           skip: Skip,
-           limit: Limit
-       }
-
-       getProducts(variables)
-    }, [])
+        const variables = {
+            skip: Skip,
+            limit: Limit
+        }
+ 
+        getProducts(variables)
+     }, [])
 
     const getProducts = (variables) => {
         Axios.post('/api/product/getProducts', variables)
         .then(response => {
-
-
-            console.log(response.data.products)
-
             if(response.data.success) {
-                setProducts([...Products, response.data.products])
+                setProducts([...Products, ...response.data.products])
                 setPostSize(response.data.postSize)
                
             } else {
                 alert('Failed to fetch product datas')
             }
         })
-        
-        
     }
 
     const onLoadMore = () => {
@@ -55,7 +49,7 @@ function LandingPage() {
 
 
     const renderCards = Products.map((product,index)=>{
-        console.log(product.images)
+        console.log(product)
         return <Col lg={6} md={8} xs={24}>
         <Card 
             hoverable={true}
@@ -70,7 +64,7 @@ function LandingPage() {
     
     })
 
-
+    console.log(Products)
 
     return (
         <div style={{ width: '75%', margin: '3rem auto'}}>
@@ -84,7 +78,7 @@ function LandingPage() {
             </div> : 
             <div>
                 <Row gutter={[16,16]}>
-                    {Products.map((product, index)=> {})}
+                    
                         {renderCards}
                     
                 </Row>
