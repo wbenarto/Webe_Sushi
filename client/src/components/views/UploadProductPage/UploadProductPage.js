@@ -53,6 +53,7 @@ function UploadProductPage(props) {
     
     const onSubmit = (event) => {
         event.preventDefault();
+        console.log("onSubmit button clicked")
 
         if (!TitleValue || !DescriptionValue || !PriceValue || !CategoryValue || !Images ) {
             return alert('fill all the fields first!')
@@ -66,9 +67,12 @@ function UploadProductPage(props) {
             images: Images,
             categories: CategoryValue
         }
+        console.log(variables)
 
-        Axios.post('api/product/uploadProduct', variables)
+        Axios.post('/api/product/uploadProduct', variables)
             .then(response => {
+                console.log('Axios post uploadProduct Fired')
+                console.log(response)
                 if(response.data.success) {
                     alert('Product Successfully Uploaded!')
                     props.history.push('/')
@@ -76,6 +80,7 @@ function UploadProductPage(props) {
                     alert('Failed to upload Product')
                 }
             })
+        
     }
 
     return (

@@ -43,8 +43,9 @@ router.post("/uploadImage", auth, (req, res) => {
     console.log(`upload function fired in post request in router/product`)
 });
 
-router.post('/uploadProduct', auth, (req, res) => {
+router.post("/uploadProduct", auth, (req, res) => {
     const product = new Product(req.body)
+    console.log(product)
 
     product.save((err)=> {
         if (err) return res.status(400).json({success: false, err})
@@ -52,11 +53,22 @@ router.post('/uploadProduct', auth, (req, res) => {
     })
 });
  
-router.get('/getProducts', auth, (req, res) => {
+router.post('/getProducts', auth, (req, res) => {
+
+    let order = req.body.order ? req.body.order : 'desc';
+    let sortBy = req.body.sortBy ? req.body.sortBy : '_id';
+    let limit = req.body.limit ? parseInt(req.body.limit) : 100;
+    let skip = parseInt(req.body.skip);
+
+
   Product.find()
-  .exec((err,product)=> {
+  .populate("writer")
+  .sort([[sortBy, order]])
+  .skip(skip)
+  .limit(limit)
+  .exec((err,products)=> {
       if(err) return res.status(400).json({success: false , err})
-      return res.status(200).json({success: true, products})
+      return res.status(200).json({success: true, products, postSize: products.length})
   })
 });
 

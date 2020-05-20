@@ -3,6 +3,7 @@ import { Carousel } from 'antd';
 
 
 function ImageSlider(props) {
+    console.log(props.images)
     return (
         <div>
             <Carousel autoplay>
