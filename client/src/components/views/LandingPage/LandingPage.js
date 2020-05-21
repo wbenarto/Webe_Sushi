@@ -1,137 +1,142 @@
-import React, { useState, useEffect } from 'react'
-import Axios from 'axios';
-import {Icon, Col, Card, Row} from 'antd';
-import ImageSlider from '../../utils/ImageSlider';
-import CheckBox from './Sections/CheckBox'
+import React, { useState, useEffect } from "react";
+import Axios from "axios";
+import { Icon, Col, Card, Row } from "antd";
+import ImageSlider from "../../utils/ImageSlider";
+import CheckBox from "./Sections/CheckBox";
+import RadioBox from "./Sections/RadioBox";
 
-
-const {Meta} = Card
+const { Meta } = Card;
 
 function LandingPage() {
+  const [Products, setProducts] = useState([]);
+  const [Skip, setSkip] = useState(0);
+  const [Limit, setLimit] = useState(8);
+  const [PostSize, setPostSize] = useState();
+  const [Filters, setFilters] = useState({
+    categories: [],
+    price: [],
+  });
 
-    const [Products, setProducts] = useState([])
-    const [Skip, setSkip] = useState(0)
-    const [Limit, setLimit] = useState(8)
-    const [PostSize, setPostSize] = useState()
-    const [Filters, setFilters] = useState({
-        categories: [],
-        price: []
-    })
+  useEffect(() => {
+    const variables = {
+      skip: Skip,
+      limit: Limit,
+    };
 
+    getProducts(variables);
+  }, []);
 
-    useEffect(()=>{
-        const variables = {
-            skip: Skip,
-            limit: Limit
-        }
- 
-        getProducts(variables)
-     }, [])
-
-    const getProducts = (variables) => {
-        Axios.post('/api/product/getProducts', variables)
-        .then(response => {
-            if(response.data.success) { 
-                if(variables.loadMore) {
-                    setProducts([...Products, ...response.data.products])
-                } else {
-                    setProducts(response.data.products)
-                }
-                
-                setPostSize(response.data.postSize)
-               
-            } else {
-                alert('Failed to fetch product datas')
-            }
-        })
-    }
-
-    const onLoadMore = () => {
-        let skip = Skip + Limit ;
-
-        const variables = {
-            skip: skip,
-            limit: Limit,
-            loadMore: true
+  const getProducts = (variables) => {
+    Axios.post("/api/product/getProducts", variables).then((response) => {
+      if (response.data.success) {
+        if (variables.loadMore) {
+          setProducts([...Products, ...response.data.products]);
+        } else {
+          setProducts(response.data.products);
         }
 
-        getProducts(variables)
+        setPostSize(response.data.postSize);
+      } else {
+        alert("Failed to fetch product datas");
+      }
+    });
+  };
 
-        setSkip(skip)
-    }
+  const onLoadMore = () => {
+    let skip = Skip + Limit;
 
+    const variables = {
+      skip: skip,
+      limit: Limit,
+      loadMore: true,
+    };
 
-    const renderCards = Products.map((product,index)=>{
-        console.log(product)
-        return <Col lg={6} md={8} xs={24}>
-        <Card 
-            hoverable={true}
-            cover={<ImageSlider images={product.images}/>}
-        >
-            <Meta 
-                title={product.title}
-                description={`$${product.price}`}
-            />
-        </Card>
-        </Col>
-    
-    })
-    
-    const showFilteredResults = (filters) => {
-        const variables = {
-            skip: 0,
-            limit: Limit,
-            filters: filters
-        }
+    getProducts(variables);
 
-        getProducts(variables);
-        setSkip(0)
-    }
+    setSkip(skip);
+  };
 
-    const handleFilters = (filters, category) => {
-        console.log(filters)
-        const newFilters = {...Filters}
-        newFilters[category] = filters
-
-        if(category === 'price') {
-
-        }
-        showFilteredResults(newFilters)
-        setFilters(newFilters)
-    }
-    console.log(Products)
-
+  const renderCards = Products.map((product, index) => {
+    console.log(product);
     return (
-        <div style={{ width: '75%', margin: '3rem auto'}}>
-            <div style={{ textAlign: 'center'}}>
-                <h2> Pick Up or Delivery only  <Icon type='rocket'/></h2>
-            </div>
+      <Col lg={6} md={8} xs={24}>
+        <Card hoverable={true} cover={<ImageSlider images={product.images} />}>
+          <Meta title={product.title} description={`$${product.price}`} />
+        </Card>
+      </Col>
+    );
+  });
 
-        <CheckBox handleFilters={filters => handleFilters(filters, 'categories')}/>
-            
-        {Products.length === 0 ? 
-            <div style={{display: 'flex', height:'300px', justifyContent: 'center', alignItems: 'center'}}>
-                <h2>Cookin up something good for you...</h2>
-            </div> : 
-            <div>
-                <Row gutter={[16,16]}>
-                    
-                        {renderCards}
-                    
-                </Row>
+  const showFilteredResults = (filters) => {
+    const variables = {
+      skip: 0,
+      limit: Limit,
+      filters: filters,
+    };
 
-            </div>
-    } 
-            <br /><br />
+    getProducts(variables);
+    setSkip(0);
+  };
 
-            {PostSize >= Limit && 
-            <div style={{ display: 'flex', justifyContent: 'center'}}>
-                <button onClick={onLoadMore}>Load More</button>
-            </div>
-            }
+  const handleFilters = (filters, category) => {
+    console.log(filters);
+    const newFilters = { ...Filters };
+    newFilters[category] = filters;
 
+    if (category === "price") {
+    }
+    showFilteredResults(newFilters);
+    setFilters(newFilters);
+  };
+  console.log(Products);
+
+  return (
+    <div style={{ width: "75%", margin: "3rem auto" }}>
+      <div style={{ textAlign: "center" }}>
+        <h2>
+          {" "}
+          Pick Up or Delivery only <Icon type="rocket" />
+        </h2>
+      </div>
+      <Row gutter={[16, 16]}>
+        <Col lg={12} xs={24}>
+          <CheckBox
+            handleFilters={(filters) => handleFilters(filters, "categories")}
+          />
+        </Col>
+        <Col lg={12} xs={24}>
+          <RadioBox
+            handleFilters={(filters)=> handleFilters(filters, 'price')}  
+          />
+        </Col>
+      </Row>
+
+      {Products.length === 0 ? (
+        <div
+          style={{
+            display: "flex",
+            height: "300px",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <h2>Cookin up something good for you...</h2>
         </div>
-    )
+      ) : (
+        <div>
+          <Row gutter={[16, 16]}>{renderCards}</Row>
+        </div>
+      )}
+      <br />
+      <br />
+
+      {PostSize >= Limit && (
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <button onClick={onLoadMore}>Load More</button>
+        </div>
+      )}
+    </div>
+  );
 }
 
-export default LandingPage
+export default LandingPage;
