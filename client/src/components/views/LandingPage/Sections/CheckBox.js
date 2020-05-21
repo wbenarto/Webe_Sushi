@@ -46,7 +46,6 @@ function CheckBox(props) {
     const [Checked, setChecked] = useState([])
     
     
-    
     const handleToggle = (value) => {
         const currentIndex = Checked.indexOf(value);
         const newChecked = [...Checked];
@@ -60,18 +59,18 @@ function CheckBox(props) {
         props.handleFilters(newChecked)
     }
 
-    const renderCheckboxLists = (value, index) => categories.map(()=>(
+    const renderCheckboxLists = () => categories.map((value,index)=>(
+        
         <React.Fragment key={index}>
         <Checkbox
             onChange={()=>handleToggle(value._id)}
             type='checkbox'
-            checked
+            checked={Checked.indexOf(value._id) === -1 ? false : true}
         />
         <span>{value.name}</span>
     </React.Fragment>
     ))
-    
-    
+
     return (
         <div>
                 <Collapse defaultActiveKey={['0']}>

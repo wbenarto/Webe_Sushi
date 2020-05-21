@@ -42,7 +42,7 @@ router.post("/uploadImage", auth, (req, res) => {
     console.log(`upload function fired in post request in router/product`)
 });
 
-router.post("/uploadProduct", (req, res) => {
+router.post("/uploadProduct", auth, (req, res) => {
     const product = new Product(req.body)
 
     product.save((err)=> {
@@ -51,15 +51,29 @@ router.post("/uploadProduct", (req, res) => {
     })
 });
  
-router.post('/getProducts', auth, (req, res) => {
+router.post('/getProducts', (req, res) => {
 
     let order = req.body.order ? req.body.order : 'desc';
     let sortBy = req.body.sortBy ? req.body.sortBy : '_id';
     let limit = req.body.limit ? parseInt(req.body.limit) : 100;
     let skip = parseInt(req.body.skip);
 
+    let findArgs = {};
 
-  Product.find()
+    console.log(req.body.filters)
+
+    for (let key in req.body.filters) {
+        if(req.body.filters[key].length > 0) {
+            if(key === 'price') {
+
+            } else {
+                findArgs[key] = req.body.filters[key];
+            }
+        }
+    }
+
+
+  Product.find(findArgs)
   .populate("writer")
   .sort([[sortBy, order]])
   .skip(skip)

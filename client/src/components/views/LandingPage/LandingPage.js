@@ -13,7 +13,12 @@ function LandingPage() {
     const [Skip, setSkip] = useState(0)
     const [Limit, setLimit] = useState(8)
     const [PostSize, setPostSize] = useState()
-    
+    const [Filters, setFilters] = useState({
+        categories: [],
+        price: []
+    })
+
+
     useEffect(()=>{
         const variables = {
             skip: Skip,
@@ -65,9 +70,28 @@ function LandingPage() {
         </Col>
     
     })
+    
+    const showFilteredResults = (filters) => {
+        const variables = {
+            skip: 0,
+            limit: Limit,
+            filters: filters
+        }
+
+        getProducts(variables);
+        setSkip(0)
+    }
 
     const handleFilters = (filters, category) => {
-        
+        console.log(filters)
+        const newFilters = {...Filters}
+        newFilters[category] = filters
+
+        if(category === 'price') {
+
+        }
+        showFilteredResults(newFilters)
+        setFilters(newFilters)
     }
     console.log(Products)
 
