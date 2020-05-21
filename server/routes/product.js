@@ -42,7 +42,7 @@ router.post("/uploadImage", auth, (req, res) => {
     console.log(`upload function fired in post request in router/product`)
 });
 
-router.post("/uploadProduct", auth, (req, res) => {
+router.post("/uploadProduct", (req, res) => {
     const product = new Product(req.body)
 
     product.save((err)=> {
