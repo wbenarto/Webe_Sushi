@@ -18,6 +18,7 @@ function LandingPage() {
     categories: [],
     price: [],
   });
+  const [SearchTerm, setSearchTerms] = useState('')
 
   useEffect(() => {
     const variables = {
@@ -62,7 +63,9 @@ function LandingPage() {
  
     return (
       <Col lg={6} md={8} xs={24}>
-        <Card hoverable={true} cover={<ImageSlider images={product.images} />}>
+        <Card 
+          hoverable={true} 
+          cover={<a href={`/product/${product._id}`}><ImageSlider images={product.images} /></a>}>
           <Meta title={product.title} description={`$${product.price}`} />
         </Card>
       </Col>
@@ -109,6 +112,22 @@ const handlePrice = (value) => {
     setFilters(newFilters);
   };
 
+  const updateSearchTerms = (newSearchTerm) => {
+ 
+    console.log(newSearchTerm)
+
+    const variables = {
+      skip: 0,
+      limit: Limit,
+      filters: Filters,
+      searchTerm: newSearchTerm
+    };
+    setSkip(0)
+    setSearchTerms(newSearchTerm)
+
+    getProducts(variables)
+    
+  }
 
   return (
     <div style={{ width: "75%", margin: "3rem auto" }}>
@@ -136,8 +155,8 @@ const handlePrice = (value) => {
         </Col>
       </Row>
       
-      <div style={{ display:'flex', justifyContent:'flex-end', margin:'1rem'}}>
-        <SearchFeature  />
+      <div style={{ display:'flex', justifyContent:'flex-end', margin:'1rem auto'}}>
+        <SearchFeature refreshFunction={updateSearchTerms} />
       </div>
       
 
