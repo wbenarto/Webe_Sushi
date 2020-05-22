@@ -4,6 +4,8 @@ import { Icon, Col, Card, Row } from "antd";
 import ImageSlider from "../../utils/ImageSlider";
 import CheckBox from "./Sections/CheckBox";
 import RadioBox from "./Sections/RadioBox";
+import SearchFeature from "./Sections/SearchFeature";
+import { categories, price } from './Sections/Datas';
 
 const { Meta } = Card;
 
@@ -57,7 +59,7 @@ function LandingPage() {
   };
 
   const renderCards = Products.map((product, index) => {
-    console.log(product);
+ 
     return (
       <Col lg={6} md={8} xs={24}>
         <Card hoverable={true} cover={<ImageSlider images={product.images} />}>
@@ -78,17 +80,35 @@ function LandingPage() {
     setSkip(0);
   };
 
-  const handleFilters = (filters, category) => {
-    console.log(filters);
-    const newFilters = { ...Filters };
-    newFilters[category] = filters;
+const handlePrice = (value) => {
+    const data = price;
+    let array = [];
 
-    if (category === "price") {
+    for (let key in data) {
+        console.log('key', key)
+        console.log('value', value)
+        if(data[key]._id === parseInt(value, 10)){
+            array = data[key].array;
+        }
+    }
+    console.log('array', array)
+    return array
+}
+
+  const handleFilters = (filters, filterCategory) => {
+    console.log(filters)
+    const newFilters = { ...Filters };
+    
+    newFilters[filterCategory] = filters;
+
+    if (filterCategory === "price") {
+        let priceValues = handlePrice(filters)
+        newFilters[filterCategory] = priceValues
     }
     showFilteredResults(newFilters);
     setFilters(newFilters);
   };
-  console.log(Products);
+
 
   return (
     <div style={{ width: "75%", margin: "3rem auto" }}>
@@ -98,18 +118,28 @@ function LandingPage() {
           Pick Up or Delivery only <Icon type="rocket" />
         </h2>
       </div>
+
+
+
       <Row gutter={[16, 16]}>
         <Col lg={12} xs={24}>
           <CheckBox
+            list={categories}
             handleFilters={(filters) => handleFilters(filters, "categories")}
           />
         </Col>
         <Col lg={12} xs={24}>
           <RadioBox
+            list={price}
             handleFilters={(filters)=> handleFilters(filters, 'price')}  
           />
         </Col>
       </Row>
+      
+      <div style={{ display:'flex', justifyContent:'flex-end', margin:'1rem'}}>
+        <SearchFeature  />
+      </div>
+      
 
       {Products.length === 0 ? (
         <div
