@@ -17,9 +17,10 @@ function ProductImage(props) {
                 })
             })
             setImages(images)
-            
         }
     }, [props.detail])
+
+    console.log(Images)
 
     return (
         <div>
