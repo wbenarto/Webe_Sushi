@@ -1,10 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { Menu } from 'antd';
+import { Menu, Icon, Badge } from 'antd';
 import axios from 'axios';
 import { USER_SERVER } from '../../../Config';
 import { withRouter } from 'react-router-dom';
 import { useSelector } from "react-redux";
+
 
 function RightMenu(props) {
   const user = useSelector(state => state.user)
@@ -23,11 +24,12 @@ function RightMenu(props) {
     return (
       <Menu mode={props.mode}>
         <Menu.Item key="mail">
-          {/* <a href="/login">Signin</a> */}
-          <a href="/product/upload">Upload</a>
+          <a href="/login">Signin</a>
+          {/* <a href="/product/upload">Sign In</a> */}
         </Menu.Item>
+
         <Menu.Item key="app">
-          <a href="/register">Signup</a>
+          <a href="/register">Sign Up</a>
         </Menu.Item>
       </Menu>
     )
@@ -37,6 +39,15 @@ function RightMenu(props) {
         <Menu.Item key="upload">
           <a href="/product/upload">Upload</a>
         </Menu.Item>
+
+        <Menu.Item key="cart" style={{ paddingBottom: 3 }}>
+          <Badge count={0}>
+            <a href="/user/cart" style={{ marginRight: -22, color: '#667777'}}>
+            <Icon type="shopping-cart" style={{ fontSize: 30, marginBottom: 4}} />          
+            </a>
+          </Badge>
+        </Menu.Item>
+
         <Menu.Item key="logout">
           <a onClick={logoutHandler}>Logout</a>
         </Menu.Item>

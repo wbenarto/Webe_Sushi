@@ -21,7 +21,7 @@ function DetailProductPage(props) {
     }, [])
 
     const addToCartHandler = (productId) => {
-        dispatch(addToCart())
+        dispatch(addToCart(productId))
     }
    
     return (
