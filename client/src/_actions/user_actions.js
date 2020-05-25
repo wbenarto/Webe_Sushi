@@ -62,9 +62,7 @@ export function addToCart(_id) {
 export function getCartItems(cartItems, userCart) {
     const request = axios.get(`/api/product/products_by_id?id=${cartItems}&type=array`)
     .then(response => {
-
-
-
+        
         userCart.forEach(cartItem => {
             response.data.forEach((productDetail, i) => {
                 if(cartItem.id === productDetail._id) {
