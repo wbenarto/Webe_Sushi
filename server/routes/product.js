@@ -95,8 +95,7 @@ router.post("/getProducts", (req, res) => {
       .limit(limit)
       .exec((err, products) => {
         if (err) return res.status(400).json({ success: false, err });
-        return res
-          .status(200)
+        res.status(200)
           .json({ success: true, products, postSize: products.length });
       });
   } else {
@@ -107,7 +106,7 @@ router.post("/getProducts", (req, res) => {
     .limit(limit)
     .exec((err,products)=> {
         if(err) return res.status(400).json({success: false , err})
-        return res.status(200).json({success: true, products, postSize: products.length})
+        res.status(200).json({success: true, products, postSize: products.length})
     })
   }  
 });

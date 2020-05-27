@@ -95,7 +95,7 @@ router.get("/addToCart", auth, (req,res) => {
                 )
             } else {
                 User.findOneAndUpdate(
-                    {_id: req.user.id},
+                    {_id: req.user._id},
                     {
                         $push: {
                             cart: {
@@ -135,6 +135,25 @@ router.get('removeFromCart', auth, (req,res) => {
                     cartDetail,
                     cart
                 })
+            })
+        }
+    )
+})
+
+router.get('/userCartInfo', auth, (req,res) => {
+    User.findOne(
+        {_id: req.user.id},
+        (err, userInfo) => {
+            let cart = userInfo.cart;
+            let array = cart.map(item=>{
+                return item.id
+            })
+
+            Product.find({'_id': { $in: array} })
+            .populate('writer')
+            .exec((err, cartDetail) => {
+                if(err) return res.status(400).send(err);
+                return res.status(200).json({ success: true, cartDetail, cart})
             })
         }
     )
