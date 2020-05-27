@@ -51,7 +51,7 @@ export function logoutUser(){
 }
 
 export function addToCart(_id) {
-    const request = axios.post(`${USER_SERVER}/addToCart?productId=${_id}`)
+    const request = axios.get(`${USER_SERVER}/addToCart?productId=${_id}`)
     .then(response => response.data);
 
     return {
@@ -88,7 +88,7 @@ export function removeCartItem(id) {
         response.data.cart.forEach(item=> {
             response.data.cartDetail.forEach((k,i)=> {
                 if(item.id === k._id) {
-                    response.data.cartItem[i].quantity = item.quantity
+                    response.data.cartDetail[i].quantity = item.quantity
                 }
             })
         })

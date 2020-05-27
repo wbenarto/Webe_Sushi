@@ -66,11 +66,13 @@ function CartPage(props) {
                     removeItem={removeFromCart}
 
                 />
+                <br/>
+                <br/>
+                <hr/>
                 
-
                 { ShowTotal ? 
-                <div style={{ marginTop: '3rem'}}>
-                <h2>Total amount: $ {Total} </h2>
+                <div style={{ marginTop: '3rem'} }>
+                <h2 style={{textAlign: 'right'}}>Total amount: $ {Total} </h2>
                 </div> :
                 ShowSuccess ? 
                     <Result

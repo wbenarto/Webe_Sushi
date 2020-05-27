@@ -72,6 +72,7 @@ router.get("/logout", auth, (req, res) => {
 });
 
 router.get("/addToCart", auth, (req,res) => {
+
     User.findOne({_id: req.user._id}
         , (err, userInfo) => {
 
@@ -116,6 +117,7 @@ router.get("/addToCart", auth, (req,res) => {
 })
 
 router.get('removeFromCart', auth, (req,res) => {
+    
     User.findOneAndUpdate(
         {_id: req.user._id},
         {
@@ -142,7 +144,7 @@ router.get('removeFromCart', auth, (req,res) => {
 
 router.get('/userCartInfo', auth, (req,res) => {
     User.findOne(
-        {_id: req.user.id},
+        {_id: req.user._id},
         (err, userInfo) => {
             let cart = userInfo.cart;
             let array = cart.map(item=>{
