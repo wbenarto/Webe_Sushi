@@ -116,7 +116,7 @@ router.get("/addToCart", auth, (req,res) => {
         })
 })
 
-router.get('removeFromCart', auth, (req,res) => {
+router.get('/removeFromCart', auth, (req,res) => {
     
     User.findOneAndUpdate(
         {_id: req.user._id},
