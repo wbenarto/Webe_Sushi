@@ -5,11 +5,11 @@ import { Carousel } from 'antd';
 function ImageSlider(props) {
     
     return (
-        <div>
+        <div style={{ width:'100%', height:'310.66px', overflow:'hidden', verticalAlign:'middle', position: 'relative'}}>
             <Carousel autoplay>
                 {props.images.map((image,index)=>(
                     <div key={index}>
-                        <img style={{ width:'100%', maxHeight:'150px'}} src={`http://localhost:5000/${image}`} alt='productImage' />
+                        <img style={{ width:'100%', position: 'relative'}} src={`http://localhost:5000/${image}`} alt='productImage' />
                     </div>
                 ))}
             </Carousel>
