@@ -16,5 +16,5 @@ function ImageSlider(props) {
         </div>
     )
 }
-
+//adding more images into slider. more sushi to come!!!!
 export default ImageSlider
