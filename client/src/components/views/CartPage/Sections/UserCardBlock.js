@@ -17,14 +17,14 @@ function UserCardBlock(props) {
             
             <tr key ={product._id}>
                 <td>
-                    <img style={{ width:'70px' }} alt='product' 
+                    <img style={{ width:'200px' }} alt='product' 
                     src={renderCartImage(product.images)}
                 />
                 </td>
-                <td>{product.title}</td>
-                <td>{product.description}</td>
-                <td>{product.quantity}</td>
-                <td>$ {product.price}</td>
+                <td><p stye={{widht: '400px'}}>{product.title}</p></td>
+                <td><p style={{width: '600px'}}>{product.description}</p></td>
+                <td><p>{product.quantity}</p></td>
+                <td style={{margin:'5px 5px'}}><p>$ {product.price}</p></td>
                 <td><button 
                 onClick={()=>props.removeItem(product._id)}
                 >Remove</button></td>

@@ -168,6 +168,7 @@ const handlePrice = (value) => {
             height: "300px",
             justifyContent: "center",
             alignItems: "center",
+            verticalAlign: "middle"
           }}
         >
           <h2>Cookin up something good for you...</h2>
