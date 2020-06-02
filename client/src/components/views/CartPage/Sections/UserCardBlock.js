@@ -1,6 +1,8 @@
 import React from 'react'
 import Table from '@material-ui/core/Table'
 
+import styles from './UserCardBlock.module.css'
+
 function UserCardBlock(props) {
     console.log(props.products)
     const renderCartImage = (images) => {
@@ -21,10 +23,10 @@ function UserCardBlock(props) {
                     src={renderCartImage(product.images)}
                 />
                 </td>
-                <td><p stye={{widht: '400px'}}>{product.title}</p></td>
-                <td><p style={{width: '600px'}}>{product.description}</p></td>
-                <td><p>{product.quantity}</p></td>
-                <td style={{margin:'5px 5px'}}><p>$ {product.price}</p></td>
+                <td>{product.title}</td>
+                <td className={styles.description}>{product.description}</td>
+                <td>{product.quantity}</td>
+                <td>$ {product.price}</td>
                 <td><button 
                 onClick={()=>props.removeItem(product._id)}
                 >Remove</button></td>
@@ -34,15 +36,15 @@ function UserCardBlock(props) {
 
     return (
         <div>
-            <Table>
+            <Table className={styles.contentTable}>
                 <thead>
-                    <tr>
-                        <th style={{paddingBottom:'20px'}}>Product Image</th>
-                        <th style={{paddingBottom:'20px'}}>Product Name</th>
-                        <th style={{paddingBottom:'20px'}}>Description</th>
-                        <th style={{paddingBottom:'20px'}}>Quantity</th>
-                        <th style={{paddingBottom:'20px'}}>Price</th>
-                        <th style={{paddingBottom:'20px'}}>Remove product from Cart</th>
+                    <tr className={styles.tableHeader}>
+                        <th>Product Image</th>
+                        <th>Product Name</th>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Remove from Cart</th>
                     </tr>
                 </thead>
                 <tbody>
