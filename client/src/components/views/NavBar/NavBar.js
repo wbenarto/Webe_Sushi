@@ -3,6 +3,9 @@ import LeftMenu from './Sections/LeftMenu';
 import RightMenu from './Sections/RightMenu';
 import { Drawer, Button, Icon } from 'antd';
 import './Sections/Navbar.css';
+import { urlencoded } from 'body-parser';
+
+import image from '../../images/WebeCircle.png'
 
 function NavBar() {
   const [visible, setVisible] = useState(false)
@@ -18,7 +21,7 @@ function NavBar() {
   return (
     <nav className="menu" style={{ position: 'fixed', zIndex: 5, width: '100%' }}>
       <div className="menu__logo">
-        <a href="/">Webe Sushi</a>
+        <a href="/"><img className='logo_image' src={image}></img></a>
       </div>
       <div className="menu__container">
         <div className="menu_left">

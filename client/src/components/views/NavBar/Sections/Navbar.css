@@ -12,11 +12,15 @@
   width: 150px;
   float: left;
 }
+.logo_image {
+  width: 100%;
+  
+}
 
 .menu__logo a {
   display: inline-block;
-  font-size: 20px;
-  padding: 19px 20px;
+ 
+
 }
 
 .menu__container .ant-menu-item {
