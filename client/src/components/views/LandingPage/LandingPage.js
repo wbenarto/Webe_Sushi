@@ -131,7 +131,7 @@ const handlePrice = (value) => {
   }
 
   return (
-    <div style={{ width: "75%", margin: "7rem auto" }}>
+    <div style={{ width: "75%", margin: "6rem auto" }}>
       <div style={{ textAlign: "center", marginTop: "20px" }}>
         <h2>
           {" "}
