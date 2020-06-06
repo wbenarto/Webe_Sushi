@@ -131,8 +131,8 @@ const handlePrice = (value) => {
   }
 
   return (
-    <div style={{ width: "75%", margin: "3rem auto" }}>
-      <div style={{ textAlign: "center" }}>
+    <div style={{ width: "75%", margin: "7rem auto" }}>
+      <div style={{ textAlign: "center", marginTop: "20px" }}>
         <h2>
           {" "}
           Pick Up or Delivery only <Icon type="rocket" />
