@@ -6,6 +6,13 @@ Webe sushi is a Full-stack web application for a Pickup/Togo sushi restaurant fe
 disclaimer: This is not an actual restaurant. 
 All sushi made by William Benarto, pictures taken by Jin Choi. 
 
+Visit my site: (https://polar-cliffs-38995.herokuapp.com/)
+
+Linked In: (https://www.linkedin.com/in/william-benarto/)
+
+Portfolio: (https://wbenarto.github.io/Portfolio-WB/)
+
+
 ![https://polar-cliffs-38995.herokuapp.com/](/client/src/components/images/ss.png)
 
 ![https://polar-cliffs-38995.herokuapp.com/](/client/src/components/images/ss2.png)
