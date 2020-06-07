@@ -7,4 +7,4 @@
 3. Carousel display for images
 4. 
 
-![homepage](/client/src/components/images/Screenshot(33).png)
+![homepage](/client/src/components/images/ss.png)
