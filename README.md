@@ -25,8 +25,8 @@ Portfolio: (https://wbenarto.github.io/Portfolio-WB/)
 
 ## Features
 1. Sign Up and Sign in 
-    a. Users doesn't need to be logged in to view menu 
-    b. Users that are authenticated will be able to post images and products, also adding items into shopping cart. 
+    * Users doesn't need to be logged in to view menu 
+    * Users that are authenticated will be able to post images and products, also adding items into shopping cart. 
     ![](/client/src/components/images/signup.png)
     ![](/client/src/components/images/login.png)
 2. Upload product detail
