@@ -27,10 +27,10 @@ Portfolio: (https://wbenarto.github.io/Portfolio-WB/)
 
 ## Features
 1. Sign Up and Sign in 
-    (/client/src/components/images/signup.png)
-    (/client/src/components/images/login.png)
+    ![](/client/src/components/images/signup.png)
+    ![](/client/src/components/images/login.png)
 2. Upload product detail
-    (/client/src/components/images/upload.png)
+    ![](/client/src/components/images/upload.png)
 3. Carousel display for images
 4. Product detail page
     (/client/src/components/images/ss2.png)
