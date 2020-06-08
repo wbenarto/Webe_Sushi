@@ -4,11 +4,11 @@ Webe Sushi is a fun project combining two different skills I have cultivated ove
 Webe sushi is a Full-stack web application for a Pickup/Togo sushi restaurant featuring all menu made by me. I had tons of fun building this project. Please let me know if you have any constructive feedback for my web-app. Enjoy! 
 
 disclaimer: This is not an actual restaurant. 
-All sushi made by William Benarto, pictures taken by Jin Choi. 
+All sushi made by William Benarto, pictures taken by Jin Choi, logo Nav bar designed by Alfian Laurens. 
 
 Visit my site: (https://polar-cliffs-38995.herokuapp.com/)
 
-Linked In: (https://www.linkedin.com/in/william-benarto/)
+LinkedIn: (https://www.linkedin.com/in/william-benarto/)
 
 Portfolio: (https://wbenarto.github.io/Portfolio-WB/)
 
