@@ -32,6 +32,8 @@ Portfolio: (https://wbenarto.github.io/Portfolio-WB/)
 2. Upload product detail
     ![](/client/src/components/images/upload.png)
 3. Carousel display for images
+    * Animation to display multiple product images in landing page. 
+    ![](/client/src/components/images/carousel.png)
 4. Product detail page
     ![](/client/src/components/images/ss2.png)
 5. Add and remove item from Cart 
