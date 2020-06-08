@@ -15,19 +15,24 @@ Portfolio: (https://wbenarto.github.io/Portfolio-WB/)
 
 ![https://polar-cliffs-38995.herokuapp.com/](/client/src/components/images/ss.png)
 
-![https://polar-cliffs-38995.herokuapp.com/](/client/src/components/images/ss2.png)
-
 ## Technologies
 1. Javascript
-2. React - frontend
-3. Redux - state management
-4. MongoDb - database
+2. React
+3. Redux
+4. MongoDb 
 5. Node.js 
 6. Express.js
 
+![https://polar-cliffs-38995.herokuapp.com/](/client/src/components/images/ss2.png)
+
 ## Features
 1. Sign Up and Sign in 
+    (/client/src/components/images/signup.png)
+    (/client/src/components/images/login.png)
 2. Upload product detail
+    (/client/src/components/images/upload.png)
 3. Carousel display for images
 4. Product detail page
+    (/client/src/components/images/ss2.png)
 5. Add and remove item from Cart 
+    (/client/src/components/images/cart.png)
