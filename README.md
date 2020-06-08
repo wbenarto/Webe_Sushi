@@ -23,16 +23,16 @@ Portfolio: (https://wbenarto.github.io/Portfolio-WB/)
 5. Node.js 
 6. Express.js
 
-![https://polar-cliffs-38995.herokuapp.com/](/client/src/components/images/ss2.png)
-
 ## Features
 1. Sign Up and Sign in 
+    a. Users doesn't need to be logged in to view menu 
+    b. Users that are authenticated will be able to post images and products, also adding items into shopping cart. 
     ![](/client/src/components/images/signup.png)
     ![](/client/src/components/images/login.png)
 2. Upload product detail
     ![](/client/src/components/images/upload.png)
 3. Carousel display for images
 4. Product detail page
-    (/client/src/components/images/ss2.png)
+    ![](/client/src/components/images/ss2.png)
 5. Add and remove item from Cart 
-    (/client/src/components/images/cart.png)
+    ![](/client/src/components/images/cart.png)
