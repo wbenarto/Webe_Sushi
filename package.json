@@ -1,7 +1,7 @@
 {
-  "name": "react-boiler-plate",
+  "name": "Webe-Sushi",
   "version": "1.0.0",
-  "description": "react boiler plate",
+  "description": "Webe sushi app, e-commerce site to sell my sushi products",
   "main": "index.js",
   "engine": {
     "node": "11.4.0",
