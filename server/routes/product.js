@@ -44,7 +44,7 @@ router.post("/uploadImage", auth, (req, res) => {
     return res.json({
       success: true,
       image: res.req.file.path,
-      filename: res.req.file.filename,
+      fileName: res.req.file.filename,
     });
   });
   // console.log(image)
