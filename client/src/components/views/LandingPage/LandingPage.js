@@ -61,8 +61,7 @@ function LandingPage() {
 
   const renderCards = Products.map((product, index) => {
  
-    return (
-      <Col lg={6} md={8} xs={24}>
+    return <Col lg={6} md={8} xs={24}>
         <Card 
           style={{width:'100%'}}
           hoverable={true} 
@@ -70,8 +69,7 @@ function LandingPage() {
           <Meta title={product.title} description={`$${product.price}`} />
         </Card>
       </Col>
-    );
-  });
+  })
 
   const showFilteredResults = (filters) => {
     const variables = {
